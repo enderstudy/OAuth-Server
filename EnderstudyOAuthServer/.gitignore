@@ -2,3 +2,5 @@
 *.db
 appsettings.json
 appsettings.*.json
+wwwroot/css/*
+wwwroot/js/*
