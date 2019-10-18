@@ -5,7 +5,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav__menu__list__item">
-            <a href="#">Published Applications</a>
+            <a asp-action="PublishedApplications" asp-controller="Application">Published Applications</a>
         </li>
         <li class="nav__menu__list__item">
             <a href="#">Register Application</a>

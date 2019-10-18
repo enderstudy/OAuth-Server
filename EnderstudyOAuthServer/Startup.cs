@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using EnderstudyOAuthServer.Data;
 using EnderstudyOAuthServer.Data.Entities;
 using EnderstudyOAuthServer.Models;
+using EnderstudyOAuthServer.Services;
 using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,6 +54,8 @@ namespace EnderstudyOAuthServer
             });
 
             services.Configure<RootUserConfig>(Configuration.GetSection("RootUser"));
+
+            services.AddScoped<IApplicationService, ApplicationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

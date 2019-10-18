@@ -1,0 +1,13 @@
+@using EnderstudyOAuthServer.Data.Entities
+@model ICollection<EnderstudyOAuthServer.Data.Entities.Application>
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>Published Applications</h1>
+
+@foreach (Application application in this.ViewData.Model)
+{
+    <div>@application.Name</div>
+}
