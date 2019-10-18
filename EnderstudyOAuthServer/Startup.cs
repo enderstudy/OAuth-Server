@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using EnderstudyOAuthServer.Data;
 using EnderstudyOAuthServer.Data.Entities;
+using EnderstudyOAuthServer.Models;
 using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace EnderstudyOAuthServer
 {
@@ -49,6 +51,8 @@ namespace EnderstudyOAuthServer
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             });
+
+            services.Configure<RootUserConfig>(Configuration.GetSection("RootUser"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,6 +90,23 @@ namespace EnderstudyOAuthServer
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        private async void CreateRoles(IServiceProvider serviceProvider, IOptions<RootUserConfig> rootUserConfig)
+        {
+            UserManager<User> userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+
+            User user = new User
+            {
+                UserName = rootUserConfig.Value.Username,
+                Email = rootUserConfig.Value.Email
+            };
+
+            IdentityResult result = await userManager.CreateAsync(user, rootUserConfig.Value.Password);
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, "Administrator");
+            }
         }
     }
 }
