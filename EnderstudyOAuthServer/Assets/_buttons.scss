@@ -1,0 +1,27 @@
+.button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  color: #FFF;
+  border: 1px solid #6F6F6F;
+  border-radius: 2.7px;
+  padding: 10px 8px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+
+  &--purple {
+    background: #581DFF;
+    border-color: darken(#581DFF, 5%);
+  }
+
+  &--pink {
+    background: #FF1D6A;
+    border-color: darken(#FF1D6A, 5%);
+  }
+  
+  &--block {
+    width: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Identity
+@using EnderstudyOAuthServer.Data.Entities
+@inject SignInManager<User> SignInManager
+<ul class="nav__menu__list">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav__menu__list__item">
+            <a href="#">Published Applications</a>
+        </li>
+        <li class="nav__menu__list__item">
+            <a href="#">Register Application</a>
+        </li>
+        @if (User.IsInRole("Administrator"))
+        {
+            <li class="nav__menu__list__item">
+                <a href="#">Register Official Application</a>
+            </li>
+        }
+        <li class="nav__menu__list__item">
+            <a href="#">My Account</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav__menu__list__item">
+            <a asp-action="Index" asp-controller="Login">Log In</a>
+        </li>
+        <li class="nav__menu__list__item">
+            <a asp-action="Index" asp-controller="Registration">Register</a>
+        </li>
+    }
+</ul>
