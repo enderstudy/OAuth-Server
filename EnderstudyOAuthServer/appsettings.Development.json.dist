@@ -5,5 +5,11 @@
       "System": "Information",
       "Microsoft": "Information"
     }
+  },
+  "RootUser": {
+    "Create": false,
+    "Username": "Username",
+    "Email": "email@example.com",
+    "Password": "password"
   }
 }

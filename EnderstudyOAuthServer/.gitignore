@@ -1,2 +1,4 @@
 .idea/
 *.db
+appsettings.json
+appsettings.*.json

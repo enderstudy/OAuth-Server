@@ -9,5 +9,11 @@
       "Microsoft.Hosting.Lifetime": "Information"
     }
   },
-  "AllowedHosts": "*"
+  "AllowedHosts": "*",
+  "RootUser": {
+    "Create": false,
+    "Username": "Username",
+    "Email": "email@example.com",
+    "Password": "password"
+  }
 }
