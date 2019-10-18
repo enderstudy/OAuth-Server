@@ -43,7 +43,7 @@ namespace EnderstudyOAuthServer.Controllers
             SignInResult result = await _signInManager.PasswordSignInAsync(user, userCredentials.PasswordHash, true, false);
             if (result.Succeeded)
             {
-                return RedirectToRoute("applications");
+                return Redirect("/");
             }
             
             return View(userCredentials);
