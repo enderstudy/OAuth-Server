@@ -25,7 +25,7 @@ namespace EnderstudyOAuthServer.Controllers
         public async Task<IActionResult> Index()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToRoute("Login");
+            return Redirect("/login");
         }
     }
 }
