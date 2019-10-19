@@ -4,3 +4,4 @@ appsettings.json
 appsettings.*.json
 wwwroot/css/*
 wwwroot/js/*
+Assets/.sass-cache/
