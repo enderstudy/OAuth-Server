@@ -13,7 +13,7 @@
         @if (User.IsInRole("Administrator"))
         {
             <li class="nav__menu__list__item">
-                <a href="#">Register Official Application</a>
+                <a asp-action="RegisterOfficialApp" asp-controller="Application">Register Official Application</a>
             </li>
         }
         <li class="nav__menu__list__item">

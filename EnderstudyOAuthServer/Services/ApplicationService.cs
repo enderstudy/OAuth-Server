@@ -35,5 +35,11 @@ namespace EnderstudyOAuthServer.Services
                 .Where(a => a.Owner.Equals(user))
                 .ToListAsync();
         }
+
+        public async Task SaveAsync(Application application)
+        {
+            await _context.AddAsync(application);
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using EnderstudyOAuthServer.Data.Entities;
@@ -24,6 +25,7 @@ namespace EnderstudyOAuthServer.Controllers
             _applicationService = applicationService;
         }
 
+        [Route("published")]
         public async Task<IActionResult> PublishedApplications()
         {
             User user = await _userManager.GetUserAsync(User);
@@ -41,6 +43,37 @@ namespace EnderstudyOAuthServer.Controllers
             }
 
             return View(publishedApplications);
+        }
+
+        [Route("register/official")]
+        [HttpGet]
+        public IActionResult RegisterOfficialApp()
+        {
+            Application application = new Application();
+            return View(application);
+        }
+
+        [Route("register/official")]
+        [HttpPost]
+        public async Task<IActionResult> RegisterOfficialApp(
+            [Bind("Name,Description,OwnerWebsite")]
+            Application applicationData
+        )
+        {
+            Application application = new Application
+            {
+                Name = applicationData.Name,
+                Description = applicationData.Description,
+                OwnerWebsite = applicationData.OwnerWebsite,
+                Owner = await _userManager.GetUserAsync(User),
+                IsOfficial = true,
+                AuthorisedUsers = new List<UserApplication>(),
+                CreatedAt = DateTime.Now
+            };
+
+            await _applicationService.SaveAsync(application);
+
+            return RedirectToRoute("applications");
         }
     }
 }

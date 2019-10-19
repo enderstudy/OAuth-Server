@@ -1,19 +1,19 @@
 .form {
   display: flex;
   flex-direction: column;
-  
+
   &__group {
     margin-bottom: 12px;
     padding: 12px;
   }
-  
+
   &__label {
     display: block;
     width: 100%;
     font-size: 18px;
     margin-bottom: 2px;
   }
-  
+
   &__input {
     background: transparent;
     appearance: none;
@@ -27,16 +27,20 @@
     width: 100%;
     color: #FFF;
     transition: border-color 0.2s ease;
-    
+
     &:focus {
       border-color: #FF1D6A;
-      
+
       & ~ label {
         color: #FF1D6A;
       }
     }
+    
+    &--textarea {
+      resize: vertical;
+    }
   }
-  
+
   &__validation {
     display: inline-block;
     margin-top: 22px;
@@ -45,11 +49,11 @@
     color: #FFF;
     border-radius: 2.7px;
     position: relative;
-    
+
     &.field-validation-valid {
       display: none;
     }
-    
+
     &:before {
       border-color: #581DFF transparent;
       border-style: solid;

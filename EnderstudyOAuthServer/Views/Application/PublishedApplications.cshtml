@@ -2,12 +2,20 @@
 @model ICollection<EnderstudyOAuthServer.Data.Entities.Application>
 
 @{
+    ViewBag.Title = "Published Applications";
     Layout = "_Layout";
 }
 
-<h1>Published Applications</h1>
-
-@foreach (Application application in this.ViewData.Model)
-{
-    <div>@application.Name</div>
-}
+<div class="container">
+    <h1>Published Applications</h1>
+    
+    @if (this.Model.Count == 0)
+    {
+        <div>Nothing here!</div>
+    }
+    
+    @foreach (Application application in this.ViewData.Model)
+    {
+        <div>@application.Name</div>
+    }
+</div>

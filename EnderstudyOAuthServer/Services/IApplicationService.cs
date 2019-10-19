@@ -12,5 +12,7 @@ namespace EnderstudyOAuthServer.Services
         Task<Application> FindByIdAsync(Guid id);
 
         Task<ICollection<Application>> FindByOwnerAsync(User user);
+
+        Task SaveAsync(Application application);
     }
 }

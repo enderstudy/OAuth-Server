@@ -1,0 +1,32 @@
+@model EnderstudyOAuthServer.Data.Entities.Application
+
+@{
+    ViewBag.Title = "Register Official App";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h1>Register Official App</h1>
+    <p>Any application registered here will be displayed to the user as an official "Built By Enderstudy" app.</p>
+    <form class="form" asp-action="RegisterOfficialApp">
+        <div class="form__group">
+            <label asp-for="Name" class="form__label">Name</label>
+            <input asp-for="Name" class="form__input form__input--text" />
+            <span asp-validation-for="Name" class="form__validation"></span>
+        </div>
+        <div class="form__group">
+            <label asp-for="Description" class="form__label">Description</label>
+            <textarea asp-for="Description" class="form__input form__input--textarea"></textarea>
+            <span asp-validation-for="Description" class="form__validation"></span>
+        </div>
+        <div class="form__group">
+            <label asp-for="OwnerWebsite" class="form__label">Website</label>
+            <input asp-for="OwnerWebsite" class="form__input form__input--text" />
+            <span asp-validation-for="OwnerWebsite" class="form__validation"></span>
+        </div>
+        <div class="form__group text-right">
+            <button type="submit" class="button button--block button--purple">Create App</button>
+        </div>
+    </form>
+    
+</div>
