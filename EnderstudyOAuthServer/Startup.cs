@@ -52,10 +52,14 @@ namespace EnderstudyOAuthServer
                 options.SignIn.RequireConfirmedEmail = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             });
-
-            services.Configure<RootUserConfig>(Configuration.GetSection("RootUser"));
-
+            
             services.AddScoped<IApplicationService, ApplicationService>();
+            
+            RootUserConfig rootUserConfig = Configuration.GetSection("RootUser").Get<RootUserConfig>();
+            if (rootUserConfig.Create)
+            {
+                CreateRootUser(services.BuildServiceProvider(), rootUserConfig);   
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,17 +99,17 @@ namespace EnderstudyOAuthServer
             });
         }
 
-        private async void CreateRoles(IServiceProvider serviceProvider, IOptions<RootUserConfig> rootUserConfig)
+        private async void CreateRootUser(IServiceProvider serviceProvider, RootUserConfig rootUserConfig)
         {
             UserManager<User> userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
             User user = new User
             {
-                UserName = rootUserConfig.Value.Username,
-                Email = rootUserConfig.Value.Email
+                UserName = rootUserConfig.Username,
+                Email = rootUserConfig.Email
             };
 
-            IdentityResult result = await userManager.CreateAsync(user, rootUserConfig.Value.Password);
+            IdentityResult result = await userManager.CreateAsync(user, rootUserConfig.Password);
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(user, "Administrator");
