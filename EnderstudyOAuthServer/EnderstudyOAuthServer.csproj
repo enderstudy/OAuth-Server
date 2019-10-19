@@ -16,7 +16,9 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0-preview1.19506.2" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -47,11 +49,16 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
       <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Login\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="wwwroot\css" />
       <Folder Include="wwwroot\js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Views\Registration\Index.cshtml" />
     </ItemGroup>
 
 </Project>

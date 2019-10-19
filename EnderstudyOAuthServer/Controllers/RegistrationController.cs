@@ -24,7 +24,8 @@ namespace EnderstudyOAuthServer.Controllers
         public IActionResult Index()
         {
             User user = new User();
-            return View(user);
+//            return View(user);
+            return Ok();
         }
 
         [HttpPost]
@@ -49,10 +50,12 @@ namespace EnderstudyOAuthServer.Controllers
                 User user = await _userManager.FindByEmailAsync(credentials.Email);
 
                 await _signInManager.PasswordSignInAsync(user, password, true, false);
-                return View(user);
+//                return View(user);
+                return Ok();
             }
 
-            return View(credentials);
+//            return View(credentials);
+            return Ok();
         }
     }
 }

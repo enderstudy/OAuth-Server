@@ -20,16 +20,16 @@
             <a href="#">My Account</a>
         </li>
         <li class="nav__menu__list__item">
-            <a asp-action="Index" asp-controller="Logout">Log Out</a>
+            <a asp-area="Identity" asp-page="/Account/Logout">Log Out</a>
         </li>
     }
     else
     {
         <li class="nav__menu__list__item">
-            <a asp-action="Index" asp-controller="Login">Log In</a>
+            <a asp-area="Identity" asp-page="/Account/Login">Log In</a>
         </li>
         <li class="nav__menu__list__item">
-            <a asp-action="Index" asp-controller="Registration">Register</a>
+            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
     }
 </ul>

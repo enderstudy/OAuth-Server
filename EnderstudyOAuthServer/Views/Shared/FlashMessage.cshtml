@@ -1,0 +1,15 @@
+@if (ViewBag.AlertContent != null)
+{
+    @if (ViewBag.AlertType != null)
+    {
+        <div class="alert alert--@ViewBag.AlertType">
+            @ViewBag.AlertContent    
+        </div>
+    }
+    else
+    {
+        <div class="alert alert--info">
+            @ViewBag.AlertContent
+        </div>
+    }
+}

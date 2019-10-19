@@ -21,9 +21,17 @@ namespace EnderstudyOAuthServer.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        
+        [Authorize]
+        [HttpGet("/")]
         public async Task<IActionResult> Index()
         {
+            ViewBag.alert = new
+            {
+                type = "info",
+                message = "You have been logged out"
+            };
+
             await _signInManager.SignOutAsync();
             return Redirect("/login");
         }

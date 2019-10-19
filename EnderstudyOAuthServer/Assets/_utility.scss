@@ -9,3 +9,22 @@
 .text-center {
   text-align: center !important; 
 }
+
+.alert {
+  padding: 12px;
+  background: #6F6F6F;
+  color: #FFF;
+  border: 1px solid darken(#6F6F6F, 5%);
+  border-radius: 2.7px;
+  font-weight: 500;
+  
+  &--error {
+    background: #FF1D6A;
+    border-color: darken(#FF1D6A, 5%);
+  }
+  
+  &--info {
+    background: #581DFF;
+    border-color: darken(#581DFF, 5%);
+  }
+}

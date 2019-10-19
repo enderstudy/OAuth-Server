@@ -12,6 +12,8 @@ using EnderstudyOAuthServer.Data;
 using EnderstudyOAuthServer.Data.Entities;
 using EnderstudyOAuthServer.Models;
 using EnderstudyOAuthServer.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,9 +37,13 @@ namespace EnderstudyOAuthServer
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -54,6 +60,7 @@ namespace EnderstudyOAuthServer
             });
             
             services.AddScoped<IApplicationService, ApplicationService>();
+            services.AddMvc();
             
             RootUserConfig rootUserConfig = Configuration.GetSection("RootUser").Get<RootUserConfig>();
             if (rootUserConfig.Create)
@@ -87,11 +94,6 @@ namespace EnderstudyOAuthServer
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "identity",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
-                
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

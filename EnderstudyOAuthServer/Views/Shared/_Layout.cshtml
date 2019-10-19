@@ -1,8 +1,4 @@
-﻿@using EnderstudyOAuthServer.Data.Entities
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<User> SignInManager
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -27,7 +23,10 @@
     </nav>
 </header>
 <main class="main">
-    @RenderBody()
+    <div class="container">
+        <partial name="FlashMessage" />
+        @RenderBody()
+    </div>
 </main>
 </body>
 </html>

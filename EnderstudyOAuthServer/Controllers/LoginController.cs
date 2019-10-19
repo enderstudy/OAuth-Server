@@ -24,7 +24,8 @@ namespace EnderstudyOAuthServer.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+//            return View();
+            return Ok();
         }
 
         [HttpPost]
@@ -37,16 +38,26 @@ namespace EnderstudyOAuthServer.Controllers
 
             if (user == null)
             {
-                return View(userCredentials);
+                ViewBag.AlertType = "error";
+                ViewBag.AlertContent = "Invalid Credentials";
+
+                return Ok();
+//                return View(userCredentials);
             }
 
             SignInResult result = await _signInManager.PasswordSignInAsync(user, userCredentials.PasswordHash, true, false);
             if (result.Succeeded)
             {
+                ViewBag.AlertType = "info";
+                ViewBag.AlertContent = "Welcome back";
                 return Redirect("/");
             }
-            
-            return View(userCredentials);
+
+            ViewBag.AlertType = "error";
+            ViewBag.AlertContent = "Login failed - Reason: " + result.ToString();
+
+            return Ok();
+//            return View(userCredentials);
         }
     }
 }

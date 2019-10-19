@@ -1,0 +1,25 @@
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log In";
+}
+
+<h1>Log in to Enderstudy</h1>
+<form class="form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <div class="form__group">
+        <label asp-for="Input.Email" class="form__label">Email</label>
+        <input asp-for="Input.Email" class="form__input form__input--text" />
+        <span asp-validation-for="Input.Email" class="form__validation"></span>
+    </div>
+    <div class="form__group">
+        <label asp-for="Input.Password" class="form__label">Password</label>
+        <input asp-for="Input.Password" type="password" class="form__input form__input--password" />
+        <span asp-validation-for="Input.Password" class="form__validation"></span>
+    </div>
+    <div class="form__group text-right">
+        <button type="submit" class="button button--block button--pink">Log in</button>
+    </div>
+</form>
+
+<partial name="_ValidationScriptsPartial" />
