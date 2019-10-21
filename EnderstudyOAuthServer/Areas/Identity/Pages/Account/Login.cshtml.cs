@@ -68,7 +68,7 @@ namespace EnderstudyOAuthServer.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
-//            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ReturnUrl = returnUrl;
         }
@@ -93,12 +93,13 @@ namespace EnderstudyOAuthServer.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
+                    ModelState.AddModelError("account_locked", "Your account has been locked due to excessive attempts, please try again later");
                     _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError("invalid_credentials", "Invalid login attempt.");
+                    ModelState.AddModelError("invalid_credentials", "Invalid credentials provided, please double check your credentials and try again");
                     return Page();
                 }
             }
