@@ -1,5 +1,6 @@
 .idea/
 *.db
+*.db-*
 appsettings.json
 appsettings.*.json
 wwwroot/css/*
