@@ -98,7 +98,7 @@ namespace EnderstudyOAuthServer.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError("invalid_credentials", "Invalid login attempt.");
                     return Page();
                 }
             }

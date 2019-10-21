@@ -1,4 +1,5 @@
 @page
+@using Microsoft.AspNetCore.Mvc.ModelBinding
 @model LoginModel
 
 @{
@@ -6,6 +7,12 @@
 }
 
 <h1>Log in to Enderstudy</h1>
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert--error">
+        <p>@Html.ValidationSummary(false)</p>
+    </div>
+}
 <form class="form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
     <div class="form__group">
         <label asp-for="Input.Email" class="form__label">Email</label>
