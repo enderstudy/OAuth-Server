@@ -60,6 +60,7 @@ namespace EnderstudyOAuthServer
             });
             
             services.AddScoped<IApplicationService, ApplicationService>();
+            services.AddScoped<IUserApplicationService, UserApplicationService>();
             services.AddMvc();
             
             RootUserConfig rootUserConfig = Configuration.GetSection("RootUser").Get<RootUserConfig>();

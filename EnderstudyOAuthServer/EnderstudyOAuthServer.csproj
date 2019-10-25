@@ -50,6 +50,9 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt" />
       <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Login\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\OAuth\Pages\Authorisation\AuthorisationPrompt.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\OAuth\Pages\_ViewImports.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\OAuth\Pages\_ViewStart.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,0 +1,53 @@
+@using EnderstudyOAuthServer.Data.Entities
+@model EnderstudyOAuthServer.Models.OAuthAuthorisationPrompt
+
+@{
+    ViewBag.Title = "Authorisation Prompt";
+    Layout = "_ESLayout";
+}
+
+<h1 class="heading">
+    <span class="heading__lede">An application is requesting access to your account</span>
+</h1>
+
+<form class="form" asp-action="Authorisation">
+    <div class="app-info">
+        <div class="app-info__group">
+            <p>The application is identifying itself as</p>
+            <h2 class="sub-heading">@Model.Application.Name</h2>
+        </div>
+        <div class="app-info__group">
+            @if (Model.Application.IsOfficial)
+            {
+                <p>This application is built and managed by Enderstudy</p>
+            }
+            else
+            {
+                <p>This application is built and managed by a third party.</p>
+            }
+            </div>
+        <div class="app-info__group">
+            <p>It was registered with us on @Model.Application.CreatedAt</p>
+        </div>
+        <div class="app-info__group">
+            <p>The application would like access to your;</p>
+            <ul>
+                @foreach (ApplicationScope scope in Model.Application.Scopes)
+                {
+                    <li><b>@scope.Scope.Label</b> - @scope.Scope.Description</li>   
+                }
+            </ul>
+        </div>
+        <div class="app-info__group">
+            <p>You can revoke this application's access to your account at any time by visiting <a href="#">My Account</a></p>
+        </div>
+        <div class="app-info__group">
+            <button type="submit" class="button button--purple">Allow</button>
+            <a href="@Model.RedirectUri" class="button button--pink">Deny</a>
+        </div>
+        
+        <input type="hidden" name="applicationId" value="@Model.Application.Id" />
+        <input type="hidden" name="redirectUri" value="@Model.RedirectUri" />
+    </div>
+</form>
+
