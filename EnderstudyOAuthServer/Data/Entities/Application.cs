@@ -19,6 +19,8 @@ namespace EnderstudyOAuthServer.Data.Entities
 
         public IEnumerable<UserApplication> AuthorisedUsers { get; set; }
 
+        public IEnumerable<ApplicationScope> Scopes { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }

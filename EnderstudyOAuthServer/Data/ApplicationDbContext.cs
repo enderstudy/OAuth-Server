@@ -15,6 +15,7 @@ namespace EnderstudyOAuthServer.Data
         public DbSet<AccessToken> AccessTokens { get; set; }
         public DbSet<AccessTokenUsage> AccessTokenUsageEvents { get; set; }
         public DbSet<UserApplication> UserApplications { get; set; }
+        public DbSet<Scope> Scopes { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -57,6 +58,15 @@ namespace EnderstudyOAuthServer.Data
 
                 accessToken.HasMany(at => at.UsageEvents)
                     .WithOne(atu => atu.AccessToken);
+            });
+
+            builder.Entity<ApplicationScope>(applicationScope =>
+            {
+                applicationScope.HasKey(asc => new {asc.ApplicationId, asc.ScopeId});
+
+                applicationScope.HasOne(asc => asc.Application)
+                    .WithMany(a => a.Scopes)
+                    .HasForeignKey(asc => asc.ApplicationId);
             });
         }
     }
