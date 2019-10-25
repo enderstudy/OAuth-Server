@@ -10,6 +10,8 @@ namespace EnderstudyOAuthServer.Data.Entities
 
         public User User { get; set; }
 
+        public Application Application { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public DateTime UsedAt { get; set; }
