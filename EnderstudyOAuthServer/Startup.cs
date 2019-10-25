@@ -104,6 +104,18 @@ namespace EnderstudyOAuthServer
         private async void CreateRootUser(IServiceProvider serviceProvider, RootUserConfig rootUserConfig)
         {
             UserManager<User> userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            IdentityRole adminRole = await roleManager.FindByNameAsync("Administrator");
+
+            if (adminRole == null)
+            {
+                adminRole = new IdentityRole();
+                adminRole.Name = "Administrator";
+                adminRole.NormalizedName = "ADMINISTRATOR";
+
+                await roleManager.CreateAsync(adminRole);
+            }
 
             User user = new User
             {
