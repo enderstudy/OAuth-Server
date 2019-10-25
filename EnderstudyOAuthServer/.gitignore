@@ -6,3 +6,4 @@ appsettings.*.json
 wwwroot/css/*
 wwwroot/js/*
 Assets/.sass-cache/
+Data/Migrations/ApplicationDbContextModelSnapshot.cs
