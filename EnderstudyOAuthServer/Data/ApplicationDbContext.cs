@@ -11,7 +11,7 @@ namespace EnderstudyOAuthServer.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Application> Applications { get; set; }
-        public DbSet<AuthorisationCodes> AuthorisationCodes { get; set; }
+        public DbSet<AuthorisationCode> AuthorisationCodes { get; set; }
         public DbSet<AccessToken> AccessTokens { get; set; }
         public DbSet<AccessTokenUsage> AccessTokenUsageEvents { get; set; }
         public DbSet<UserApplication> UserApplications { get; set; }
@@ -58,6 +58,14 @@ namespace EnderstudyOAuthServer.Data
 
                 accessToken.HasMany(at => at.UsageEvents)
                     .WithOne(atu => atu.AccessToken);
+            });
+
+            builder.Entity<AuthorisationCode>(authorisationCode =>
+            {
+                authorisationCode.HasOne(ac => ac.User)
+                    .WithMany(ac => ac.AuthorisationCodes);
+
+                authorisationCode.HasOne(ac => ac.Application);
             });
 
             builder.Entity<ApplicationScope>(applicationScope =>

@@ -2,7 +2,7 @@ using System;
 
 namespace EnderstudyOAuthServer.Data.Entities
 {
-    public class AuthorisationCodes
+    public class AuthorisationCode
     {
         public Guid Id { get; set; }
 

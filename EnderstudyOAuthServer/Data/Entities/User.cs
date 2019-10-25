@@ -22,7 +22,7 @@ namespace EnderstudyOAuthServer.Data.Entities
 
         public ICollection<Application> PublishedApplications { get; set; }
 
-        public ICollection<AuthorisationCodes> AuthorisationCodes { get; set; }
+        public ICollection<AuthorisationCode> AuthorisationCodes { get; set; }
 
         public ICollection<AccessToken> AccessTokens { get; set; }
     }

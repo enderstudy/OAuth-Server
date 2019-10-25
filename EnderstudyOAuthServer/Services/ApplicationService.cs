@@ -25,6 +25,8 @@ namespace EnderstudyOAuthServer.Services
         public async Task<Application> FindByIdAsync(Guid id)
         {
             return await _context.Applications
+                .Include(a => a.Scopes)
+                    .ThenInclude(asc => asc.Scope)
                 .Where(a => a.Id.Equals(id))
                 .SingleOrDefaultAsync();
         }
